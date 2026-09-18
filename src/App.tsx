@@ -19,14 +19,13 @@ function Navbar() {
           </div>
           <span className="font-bold text-lg text-gray-900 dark:text-white">IncomeLab</span>
         </div>
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-6">
           <a href="#methods" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Methods</a>
-          <a href="#compare" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Compare</a>
-          <a href="#tools" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Tools</a>
-          <a href="#guide" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Guide</a>
-          <a href="#free" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Free Marketing</a>
-          <a href="#traffic" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Marketing</a>
-          <a href="#payment" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Getting Paid</a>
+          <a href="#calculator" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Calculator</a>
+          <a href="#stories" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Stories</a>
+          <a href="#roadmap" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Roadmap</a>
+          <a href="#free" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Free Tips</a>
+          <a href="#payment" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Payment</a>
           <a href="#faq" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">FAQ</a>
         </div>
         <button className="md:hidden text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -36,12 +35,11 @@ function Navbar() {
       {mobileOpen && (
         <div className="md:hidden bg-white dark:bg-gray-900 border-t border-gray-100 dark:border-gray-800 px-6 py-4 space-y-3">
           <a href="#methods" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Methods</a>
-          <a href="#compare" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Compare</a>
-          <a href="#tools" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Tools</a>
-          <a href="#guide" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Guide</a>
-          <a href="#free" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Free Marketing</a>
-          <a href="#traffic" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Marketing</a>
-          <a href="#payment" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Getting Paid</a>
+          <a href="#calculator" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Calculator</a>
+          <a href="#stories" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Stories</a>
+          <a href="#roadmap" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Roadmap</a>
+          <a href="#free" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Free Tips</a>
+          <a href="#payment" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Payment</a>
           <a href="#faq" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>FAQ</a>
         </div>
       )}
@@ -1415,6 +1413,470 @@ function Quiz() {
   );
 }
 
+function IncomeCalculator() {
+  const [method, setMethod] = useState('freelancing');
+  const [hoursPerDay, setHoursPerDay] = useState(4);
+  const [skillLevel, setSkillLevel] = useState('beginner');
+  const [monthsActive, setMonthsActive] = useState(1);
+
+  const methods: Record<string, { name: string; baseRate: number; growthRate: number; icon: string }> = {
+    freelancing: { name: 'Freelancing', baseRate: 15, growthRate: 1.15, icon: '💻' },
+    ecommerce: { name: 'E-Commerce', baseRate: 5, growthRate: 1.25, icon: '🛒' },
+    content: { name: 'Content Creation', baseRate: 2, growthRate: 1.3, icon: '📹' },
+    digital: { name: 'Digital Products', baseRate: 3, growthRate: 1.2, icon: '📚' },
+    affiliate: { name: 'Affiliate Marketing', baseRate: 1, growthRate: 1.25, icon: '📈' },
+    ai: { name: 'AI Services', baseRate: 25, growthRate: 1.15, icon: '🤖' },
+    tutoring: { name: 'Online Tutoring', baseRate: 12, growthRate: 1.1, icon: '🎓' },
+    saas: { name: 'SaaS', baseRate: 0, growthRate: 1.35, icon: '🔧' },
+  };
+
+  const skillMultipliers: Record<string, number> = {
+    beginner: 0.5,
+    intermediate: 1,
+    advanced: 2,
+    expert: 3.5,
+  };
+
+  const selectedMethod = methods[method];
+  const skillMultiplier = skillMultipliers[skillLevel];
+
+  // Calculate monthly income
+  const baseMonthly = selectedMethod.baseRate * hoursPerDay * 30 * skillMultiplier;
+  const growthFactor = Math.pow(selectedMethod.growthRate, Math.min(monthsActive, 24) / 6);
+  const estimatedMonthly = Math.round(baseMonthly * growthFactor);
+  const estimatedYearly = estimatedMonthly * 12;
+
+  const formatMoney = (amount: number) => {
+    if (amount >= 1000) return `$${(amount / 1000).toFixed(1)}k`;
+    return `$${amount}`;
+  };
+
+  return (
+    <section id="calculator" className="py-24 px-6 bg-white dark:bg-gray-900">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Kalkulator</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            💰 Kalkulator Pendapatan
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Kira potensi pendapatan anda berdasarkan method, masa, dan skill level.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Inputs */}
+          <div className="space-y-6">
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Pilih Kaedah Pendapatan
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                {Object.entries(methods).map(([key, m]) => (
+                  <button
+                    key={key}
+                    onClick={() => setMethod(key)}
+                    className={`p-3 rounded-xl text-left text-sm font-medium transition-all ${
+                      method === key
+                        ? 'bg-emerald-100 dark:bg-emerald-900/30 border-2 border-emerald-500 text-emerald-700 dark:text-emerald-400'
+                        : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 text-gray-600 dark:text-gray-300 hover:border-emerald-300'
+                    }`}
+                  >
+                    <span className="text-lg mr-1">{m.icon}</span> {m.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Jam Per Hari: <span className="text-emerald-600 dark:text-emerald-400">{hoursPerDay} jam</span>
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="12"
+                value={hoursPerDay}
+                onChange={(e) => setHoursPerDay(Number(e.target.value))}
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+              />
+              <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <span>1 jam</span>
+                <span>12 jam</span>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Skill Level
+              </label>
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { key: 'beginner', label: '🌱 Beginner', desc: 'Baru belajar' },
+                  { key: 'intermediate', label: '🌿 Intermediate', desc: 'Ada pengalaman' },
+                  { key: 'advanced', label: '🌳 Advanced', desc: 'Mahir' },
+                  { key: 'expert', label: '⭐ Expert', desc: 'Pakar industri' },
+                ].map((level) => (
+                  <button
+                    key={level.key}
+                    onClick={() => setSkillLevel(level.key)}
+                    className={`p-3 rounded-xl text-left transition-all ${
+                      skillLevel === level.key
+                        ? 'bg-emerald-100 dark:bg-emerald-900/30 border-2 border-emerald-500'
+                        : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-600 hover:border-emerald-300'
+                    }`}
+                  >
+                    <div className={`text-sm font-medium ${skillLevel === level.key ? 'text-emerald-700 dark:text-emerald-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                      {level.label}
+                    </div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">{level.desc}</div>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50">
+              <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-3">
+                Bulan Aktif: <span className="text-emerald-600 dark:text-emerald-400">{monthsActive} bulan</span>
+              </label>
+              <input
+                type="range"
+                min="1"
+                max="24"
+                value={monthsActive}
+                onChange={(e) => setMonthsActive(Number(e.target.value))}
+                className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer accent-emerald-500"
+              />
+              <div className="flex justify-between text-xs text-gray-400 mt-1">
+                <span>1 bulan</span>
+                <span>24 bulan (2 tahun)</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Results */}
+          <div className="space-y-6">
+            <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white">
+              <div className="text-sm font-medium opacity-80 mb-1">Anggaran Pendapatan Bulanan</div>
+              <div className="text-5xl font-bold mb-2">{formatMoney(estimatedMonthly)}</div>
+              <div className="text-sm opacity-80">≈ {formatMoney(estimatedYearly)} / tahun</div>
+              <div className="mt-4 pt-4 border-t border-white/20">
+                <div className="flex items-center gap-2 text-sm">
+                  <span className="opacity-80">Method:</span>
+                  <span className="font-semibold">{selectedMethod.icon} {selectedMethod.name}</span>
+                </div>
+                <div className="flex items-center gap-2 text-sm mt-1">
+                  <span className="opacity-80">Masa:</span>
+                  <span className="font-semibold">{hoursPerDay} jam/hari</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50">
+              <h4 className="font-semibold text-gray-900 dark:text-white mb-4">📈 Projection 12 Bulan</h4>
+              <div className="space-y-2">
+                {[1, 3, 6, 12].map((month) => {
+                  const proj = Math.round(selectedMethod.baseRate * hoursPerDay * 30 * skillMultiplier * Math.pow(selectedMethod.growthRate, Math.min(month, 24) / 6));
+                  const width = Math.min((proj / Math.max(estimatedMonthly * 2, 1000)) * 100, 100);
+                  return (
+                    <div key={month} className="flex items-center gap-3">
+                      <span className="text-xs text-gray-500 dark:text-gray-400 w-16">Bulan {month}</span>
+                      <div className="flex-1 h-6 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                        <div
+                          className="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full flex items-center justify-end pr-2 transition-all duration-500"
+                          style={{ width: `${Math.max(width, 5)}%` }}
+                        >
+                          <span className="text-xs font-bold text-white">{formatMoney(proj)}</span>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="bg-amber-50 dark:bg-amber-900/20 rounded-2xl p-5 border border-amber-100 dark:border-amber-800/50">
+              <div className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-1">⚠️ Penafian</div>
+              <p className="text-xs text-gray-600 dark:text-gray-400">
+                Ini adalah anggaran berdasarkan data purata. Pendapatan sebenar bergantung pada usaha, niche, dan faktor lain. Hasil boleh berbeza-beza.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SuccessStories() {
+  const stories = [
+    {
+      name: 'Aiman, 24',
+      location: 'Kuala Lumpur',
+      avatar: '🧑‍💻',
+      method: 'Freelancing → Agency',
+      timeline: '18 bulan',
+      income: '$8,000/bulan',
+      story: 'Mula sebagai freelance writer di Fiverr dengan $5/article. Dalam 6 bulan, naikkan harga ke $50/article. Sekarang run content agency dengan 5 clients tetap.',
+      keyMoments: [
+        'Bulan 1: First client $50',
+        'Bulan 6: $2,000/bulan dari 4 clients',
+        'Bulan 12: Hire first contractor',
+        'Bulan 18: $8,000/bulan, 5 clients'
+      ],
+      quote: 'Kunci dia consistency. Hantar 10 proposals setiap hari, tak kira apa.'
+    },
+    {
+      name: 'Sarah, 28',
+      location: 'Pulau Pinang',
+      avatar: '👩‍🎨',
+      method: 'Digital Products',
+      timeline: '12 bulan',
+      income: '$5,500/bulan',
+      story: 'Create Canva templates dan jual di Etsy. Mula dengan 10 templates, sekarang ada 200+ products. Passive income yang terus grow setiap bulan.',
+      keyMoments: [
+        'Bulan 1: First sale $3',
+        'Bulan 3: 50 templates, $300/bulan',
+        'Bulan 6: 100 templates, $1,500/bulan',
+        'Bulan 12: 200+ templates, $5,500/bulan'
+      ],
+      quote: 'Satu template boleh jual beratus kali. Best part, buat sekali, duit masuk selamanya.'
+    },
+    {
+      name: 'Danish, 22',
+      location: 'Johor Bahru',
+      avatar: '🧑‍🎓',
+      method: 'Content Creation',
+      timeline: '24 bulan',
+      income: '$12,000/bulan',
+      story: 'Start YouTube channel tentang personal finance. 0 subscribers ke 150K subscribers dalam 2 tahun. Income dari ads, sponsorships, dan affiliate.',
+      keyMoments: [
+        'Bulan 1-6: 0 income, build content',
+        'Bulan 8: First $100 dari AdSense',
+        'Bulan 14: 50K subs, first sponsorship $2,000',
+        'Bulan 24: 150K subs, $12k/bulan'
+      ],
+      quote: '6 bulan pertama memang frustrating. Tapi bila dah viral, semua berbaloi.'
+    },
+    {
+      name: 'Nurul, 31',
+      location: 'Cyberjaya',
+      avatar: '👩‍💼',
+      method: 'AI Services',
+      timeline: '6 bulan',
+      income: '$4,200/bulan',
+      story: 'Learn AI tools (ChatGPT, Midjourney) dan offer services untuk businesses. Buat chatbots, content, dan automation untuk SMEs.',
+      keyMoments: [
+        'Bulan 1: Learn AI tools, build portfolio',
+        'Bulan 2: First client $500',
+        'Bulan 4: 3 retainer clients',
+        'Bulan 6: $4,200/bulan, 5 clients'
+      ],
+      quote: 'Ramai business owners tak faham AI. Kalau anda boleh jadi bridge, duit ada.'
+    }
+  ];
+
+  return (
+    <section id="stories" className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Success Stories</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            🏆 Kisah Kejayaan
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Contoh realiti orang yang berjaya buat duit online. Dari $0 ke ribuan ringgit sebulan.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {stories.map((story, i) => (
+            <div key={i} className="bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-700/50 overflow-hidden hover:shadow-xl hover:border-emerald-200 dark:hover:border-emerald-700/50 transition-all duration-300">
+              {/* Header */}
+              <div className="p-6 pb-4">
+                <div className="flex items-center gap-4 mb-4">
+                  <div className="w-14 h-14 rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 flex items-center justify-center text-3xl">
+                    {story.avatar}
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-900 dark:text-white">{story.name}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">{story.location}</div>
+                  </div>
+                  <div className="ml-auto text-right">
+                    <div className="text-lg font-bold text-emerald-600 dark:text-emerald-400">{story.income}</div>
+                    <div className="text-xs text-gray-500 dark:text-gray-400">dalam {story.timeline}</div>
+                  </div>
+                </div>
+                <div className="inline-block px-3 py-1 bg-emerald-100 dark:bg-emerald-900/30 rounded-full text-xs font-medium text-emerald-700 dark:text-emerald-400">
+                  {story.method}
+                </div>
+              </div>
+
+              {/* Story */}
+              <div className="px-6 pb-4">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">{story.story}</p>
+              </div>
+
+              {/* Timeline */}
+              <div className="px-6 pb-4">
+                <div className="space-y-2">
+                  {story.keyMoments.map((moment, j) => (
+                    <div key={j} className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500 flex-shrink-0"></div>
+                      <span className="text-xs text-gray-600 dark:text-gray-400">{moment}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Quote */}
+              <div className="px-6 pb-6">
+                <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 border-l-4 border-emerald-500">
+                  <p className="text-sm italic text-gray-700 dark:text-gray-300">"{story.quote}"</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VisualRoadmap() {
+  const milestones = [
+    {
+      level: 0,
+      title: 'The Beginning',
+      income: '$0',
+      color: 'bg-gray-400',
+      duration: 'Week 1',
+      actions: ['Pilih 1 method dari senarai', 'Setup akaun di platform yang perlu', 'Learn basics (YouTube, blogs)', 'Set goal: First $1 earned'],
+      mindset: '🧠 "Setiap expert pernah jadi beginner."'
+    },
+    {
+      level: 1,
+      title: 'First Dollar',
+      income: '$1–$100',
+      color: 'bg-blue-500',
+      duration: 'Bulan 1',
+      actions: ['Landing first client/sale', 'Deliver excellent work', 'Get first review/testimonial', 'Reinvest in learning'],
+      mindset: '🧠 "First dollar paling penting — ia prove ia possible."'
+    },
+    {
+      level: 2,
+      title: 'Consistency',
+      income: '$100–$1,000',
+      color: 'bg-cyan-500',
+      duration: 'Bulan 2–3',
+      actions: ['Build routine & systems', 'Get 3-5 repeat clients', 'Start building portfolio', 'Create standard processes'],
+      mindset: '🧠 "Consistency beats talent."'
+    },
+    {
+      level: 3,
+      title: 'Growth Mode',
+      income: '$1,000–$3,000',
+      color: 'bg-emerald-500',
+      duration: 'Bulan 4–6',
+      actions: ['Raise prices 20-50%', 'Add second income stream', 'Start content marketing', 'Build email list'],
+      mindset: '🧠 "Work smarter, not just harder."'
+    },
+    {
+      level: 4,
+      title: 'Scaling Up',
+      income: '$3,000–$5,000',
+      color: 'bg-teal-500',
+      duration: 'Bulan 7–12',
+      actions: ['Outsource repetitive tasks', 'Create passive income products', 'Build team/contractors', 'Focus on high-value clients'],
+      mindset: '🧠 "Leverage > Hustle."'
+    },
+    {
+      level: 5,
+      title: 'Freedom Level',
+      income: '$5,000–$10,000',
+      color: 'bg-green-500',
+      duration: 'Bulan 12–18',
+      actions: ['Multiple income streams active', 'Business runs partly without you', 'Invest in assets', 'Give back & mentor others'],
+      mindset: '🧠 "Income without trading all your time."'
+    },
+    {
+      level: 6,
+      title: 'Mastery',
+      income: '$10,000+',
+      color: 'bg-gradient-to-r from-amber-500 to-yellow-500',
+      duration: 'Bulan 18+',
+      actions: ['Build a brand, not just income', 'Create community', 'Invest & diversify', 'Choose projects you love'],
+      mindset: '🧠 "You built this. Keep growing."'
+    }
+  ];
+
+  return (
+    <section id="roadmap" className="py-24 px-6 bg-white dark:bg-gray-900">
+      <div className="max-w-4xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Roadmap</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            🗺️ Peta Jalan: $0 ke $10,000/Bulan
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Visual timeline dari zero ke income yang mengubah hidup. Ikut step by step.
+          </p>
+        </div>
+
+        {/* Visual timeline */}
+        <div className="relative">
+          {/* Vertical line */}
+          <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-gray-300 via-emerald-400 to-amber-400 dark:from-gray-600 dark:via-emerald-500 dark:to-amber-500"></div>
+
+          <div className="space-y-8">
+            {milestones.map((milestone, i) => (
+              <div key={i} className={`relative flex items-start gap-6 ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+                {/* Dot */}
+                <div className="absolute left-6 md:left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-4 border-white dark:border-gray-900 z-10" style={{ backgroundColor: 'transparent' }}>
+                  <div className={`w-full h-full rounded-full ${milestone.color}`}></div>
+                </div>
+
+                {/* Content card */}
+                <div className={`ml-14 md:ml-0 md:w-[calc(50%-2rem)] ${i % 2 === 0 ? 'md:pr-8' : 'md:pl-8'}`}>
+                  <div className="bg-gray-50 dark:bg-gray-800/50 rounded-2xl p-5 border border-gray-100 dark:border-gray-700/50 hover:border-emerald-200 dark:hover:border-emerald-700/50 hover:shadow-lg transition-all duration-300">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className={`w-3 h-3 rounded-full ${milestone.color}`}></div>
+                      <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{milestone.duration}</span>
+                      <span className="ml-auto text-sm font-bold text-emerald-600 dark:text-emerald-400">{milestone.income}</span>
+                    </div>
+                    <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-3">
+                      Level {milestone.level}: {milestone.title}
+                    </h3>
+                    <ul className="space-y-1.5 mb-3">
+                      {milestone.actions.map((action, j) => (
+                        <li key={j} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
+                          <span className="text-emerald-500 mt-0.5">✓</span>
+                          {action}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="pt-2 border-t border-gray-100 dark:border-gray-700">
+                      <span className="text-xs text-gray-500 dark:text-gray-400">{milestone.mindset}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Summary bar */}
+        <div className="mt-12 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-2xl p-6 text-white text-center">
+          <h3 className="text-xl font-bold mb-2">🎯 Your Next Step</h3>
+          <p className="text-sm opacity-90 max-w-lg mx-auto">
+            Don't try to jump to Level 6. Focus on the level you're at now. Master it, then move up. The journey of $10k starts with $1.
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -1491,6 +1953,9 @@ export default function App() {
       <Tools />
       <Guide />
       <Quiz />
+      <IncomeCalculator />
+      <SuccessStories />
+      <VisualRoadmap />
       <FreeMarketing />
       <TrafficStrategies />
       <PaymentMethods />
