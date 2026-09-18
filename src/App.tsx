@@ -464,6 +464,259 @@ function FAQ() {
   );
 }
 
+function Quiz() {
+  const [step, setStep] = useState(0);
+  const [answers, setAnswers] = useState<string[]>([]);
+  const [result, setResult] = useState<{ title: string; description: string; earning: string; icon: string; steps: string[] } | null>(null);
+
+  const questions = [
+    {
+      q: "How much time can you commit daily?",
+      options: [
+        { label: "Less than 1 hour", value: "low" },
+        { label: "1–3 hours", value: "medium" },
+        { label: "4+ hours (full-time)", value: "high" },
+      ]
+    },
+    {
+      q: "How much money can you invest upfront?",
+      options: [
+        { label: "$0 (no budget)", value: "zero" },
+        { label: "$100–$1,000", value: "low" },
+        { label: "$1,000+", value: "high" },
+      ]
+    },
+    {
+      q: "What's your primary skill?",
+      options: [
+        { label: "Writing / Communication", value: "writing" },
+        { label: "Technical / Coding", value: "tech" },
+        { label: "Creative / Design", value: "creative" },
+        { label: "Teaching / Explaining", value: "teaching" },
+        { label: "Sales / Marketing", value: "marketing" },
+        { label: "No specific skill yet", value: "none" },
+      ]
+    },
+    {
+      q: "How soon do you need income?",
+      options: [
+        { label: "This week", value: "urgent" },
+        { label: "Within 1–3 months", value: "soon" },
+        { label: "I can wait 6+ months", value: "patient" },
+      ]
+    },
+    {
+      q: "What's your risk tolerance?",
+      options: [
+        { label: "Very low — I need stability", value: "low" },
+        { label: "Medium — I can take some risks", value: "medium" },
+        { label: "High — I'm willing to bet on myself", value: "high" },
+      ]
+    },
+  ];
+
+  const getResult = (ans: string[]) => {
+    const [time, budget, skill, urgency, risk] = ans;
+
+    // Urgent + no budget = freelancing or tutoring
+    if (urgency === 'urgent' && budget === 'zero') {
+      return {
+        title: 'Freelancing',
+        icon: '💻',
+        earning: '$1,000–$10,000/mo',
+        description: 'Start offering your skills on Upwork or Fiverr immediately. You can land your first client this week.',
+        steps: ['Create profiles on Upwork & Fiverr today', 'List 3 services you can deliver confidently', 'Send 10 proposals per day for the first week', 'Price competitively to build reviews fast', 'Raise rates after 5 positive reviews']
+      };
+    }
+
+    // Tech skill + patient = SaaS
+    if (skill === 'tech' && urgency === 'patient') {
+      return {
+        title: 'Micro-SaaS',
+        icon: '🔧',
+        earning: '$2,000–$50,000/mo',
+        description: 'Build a small software tool that solves a specific problem. Recurring revenue with high margins.',
+        steps: ['Find a niche problem people complain about online', 'Build an MVP in 2–4 weeks using AI coding tools', 'Launch on Product Hunt & Indie Hackers', 'Charge $9–$49/month per user', 'Iterate based on user feedback']
+      };
+    }
+
+    // Teaching skill = digital products or tutoring
+    if (skill === 'teaching') {
+      return {
+        title: 'Digital Products + Tutoring',
+        icon: '📚',
+        earning: '$500–$15,000/mo',
+        description: 'Teach what you know. Start with 1-on-1 tutoring for quick cash, then scale with courses.',
+        steps: ['Sign up on tutoring platforms (Wyzant, Chegg)', 'Create a simple course outline on your expertise', 'Record 5–10 lessons using free tools', 'Sell on Gumroad or Teachable', 'Use student testimonials to grow']
+      };
+    }
+
+    // Writing skill = content + affiliate
+    if (skill === 'writing') {
+      return {
+        title: 'Content + Affiliate Marketing',
+        icon: '📝',
+        earning: '$500–$20,000/mo',
+        description: 'Build a blog or newsletter, grow an audience, and monetize with affiliate links and sponsorships.',
+        steps: ['Pick a profitable niche (finance, tech, health)', 'Start a blog or newsletter this week', 'Write 3 SEO-optimized articles per week', 'Join affiliate programs (Amazon, ShareASale)', 'Build an email list from day one']
+      };
+    }
+
+    // Creative skill = content creation
+    if (skill === 'creative') {
+      return {
+        title: 'Content Creation',
+        icon: '📹',
+        earning: '$200–$50,000/mo',
+        description: 'Build an audience on YouTube, TikTok, or Instagram. Monetize through ads, sponsorships, and products.',
+        steps: ['Pick one platform and commit to it', 'Post consistently (3–5x per week minimum)', 'Study what works in your niche', 'Engage with every comment', 'Once at 1k followers, add monetization']
+      };
+    }
+
+    // Marketing skill = e-commerce or affiliate
+    if (skill === 'marketing') {
+      return {
+        title: 'E-Commerce / Dropshipping',
+        icon: '🛒',
+        earning: '$1,000–$50,000/mo',
+        description: 'Use your marketing skills to sell products online. Start with dropshipping to minimize risk.',
+        steps: ['Research trending products on TikTok/Amazon', 'Set up a Shopify store', 'Run targeted ads on Facebook/TikTok', 'Test 3–5 products before going all-in', 'Scale winners, cut losers fast']
+      };
+    }
+
+    // High budget + high risk = trading or e-commerce
+    if (budget === 'high' && risk === 'high') {
+      return {
+        title: 'E-Commerce Brand',
+        icon: '🛒',
+        earning: '$5,000–$100,000/mo',
+        description: 'Invest in building a real e-commerce brand. Higher risk but massive upside with the right product.',
+        steps: ['Find a product with proven demand', 'Source from manufacturers (Alibaba)', 'Build a professional brand & website', 'Launch with influencer marketing', 'Reinvest profits into inventory & ads']
+      };
+    }
+
+    // No skill yet = learn + freelancing
+    if (skill === 'none') {
+      return {
+        title: 'AI-Powered Freelancing',
+        icon: '🤖',
+        earning: '$1,000–$8,000/mo',
+        description: 'Use AI tools to offer services you don\'t traditionally have skills for. The new equalizer.',
+        steps: ['Learn ChatGPT, Claude, and Midjourney deeply', 'Offer AI-assisted services: writing, design, research', 'Create portfolio pieces using AI tools', 'List services on Fiverr at competitive prices', 'Deliver fast, over-deliver on quality']
+      };
+    }
+
+    // Default
+    return {
+      title: 'Freelancing + Digital Products',
+      icon: '💼',
+      earning: '$1,000–$20,000/mo',
+      description: 'Start with freelancing for immediate income, then build digital products for passive income over time.',
+      steps: ['Pick a service you can offer this week', 'Create profiles on 2 freelancing platforms', 'Start delivering and collecting reviews', 'Document your process as you go', 'Turn your knowledge into a digital product']
+    };
+  };
+
+  const handleAnswer = (value: string) => {
+    const newAnswers = [...answers, value];
+    setAnswers(newAnswers);
+    if (step < questions.length - 1) {
+      setStep(step + 1);
+    } else {
+      setResult(getResult(newAnswers));
+    }
+  };
+
+  const reset = () => {
+    setStep(0);
+    setAnswers([]);
+    setResult(null);
+  };
+
+  return (
+    <section className="py-24 px-6 bg-gradient-to-b from-white to-gray-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="max-w-3xl mx-auto">
+        <div className="text-center mb-12">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Interactive Tool</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            Find Your Best Income Path
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400">
+            Answer 5 quick questions and get a personalized recommendation.
+          </p>
+        </div>
+
+        <div className="bg-white dark:bg-gray-800/50 rounded-2xl border border-gray-200 dark:border-gray-700 p-8 shadow-sm">
+          {!result ? (
+            <>
+              {/* Progress bar */}
+              <div className="mb-8">
+                <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mb-2">
+                  <span>Question {step + 1} of {questions.length}</span>
+                  <span>{Math.round(((step) / questions.length) * 100)}% complete</span>
+                </div>
+                <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full transition-all duration-500"
+                    style={{ width: `${(step / questions.length) * 100}%` }}
+                  ></div>
+                </div>
+              </div>
+
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
+                {questions[step].q}
+              </h3>
+
+              <div className="space-y-3">
+                {questions[step].options.map((option, i) => (
+                  <button
+                    key={i}
+                    onClick={() => handleAnswer(option.value)}
+                    className="w-full text-left px-5 py-4 rounded-xl border border-gray-200 dark:border-gray-600 hover:border-emerald-400 dark:hover:border-emerald-500 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 transition-all duration-200 text-gray-700 dark:text-gray-200 font-medium"
+                  >
+                    {option.label}
+                  </button>
+                ))}
+              </div>
+            </>
+          ) : (
+            <div className="text-center">
+              <div className="text-6xl mb-4">{result.icon}</div>
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                Your Best Match: {result.title}
+              </h3>
+              <div className="text-lg font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                Potential: {result.earning}
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 mb-8 max-w-lg mx-auto">
+                {result.description}
+              </p>
+
+              <div className="text-left bg-gray-50 dark:bg-gray-800 rounded-xl p-6 mb-8">
+                <h4 className="font-semibold text-gray-900 dark:text-white mb-4">Your Action Plan:</h4>
+                <ol className="space-y-3">
+                  {result.steps.map((s, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <span className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-100 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xs font-bold">{i + 1}</span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300">{s}</span>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <button
+                onClick={reset}
+                className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-medium rounded-xl hover:shadow-lg transition-all"
+              >
+                Retake Quiz
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Newsletter() {
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -539,6 +792,7 @@ export default function App() {
       <Compare />
       <Tools />
       <Guide />
+      <Quiz />
       <FAQ />
       <Newsletter />
       <Footer />
