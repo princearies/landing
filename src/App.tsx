@@ -24,6 +24,7 @@ function Navbar() {
           <a href="#compare" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Compare</a>
           <a href="#tools" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Tools</a>
           <a href="#guide" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Guide</a>
+          <a href="#payment" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Getting Paid</a>
           <a href="#faq" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">FAQ</a>
         </div>
         <button className="md:hidden text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(!mobileOpen)}>
@@ -36,6 +37,7 @@ function Navbar() {
           <a href="#compare" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Compare</a>
           <a href="#tools" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Tools</a>
           <a href="#guide" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Guide</a>
+          <a href="#payment" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Getting Paid</a>
           <a href="#faq" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>FAQ</a>
         </div>
       )}
@@ -464,6 +466,156 @@ function FAQ() {
   );
 }
 
+function PaymentMethods() {
+  const payments = [
+    {
+      icon: '🏦',
+      title: 'Bank Transfer',
+      platforms: 'Freelancing, E-Commerce, SaaS',
+      description: 'Direct deposit to your local bank account. Most platforms support this.',
+      details: ['Works with all major banks', 'Takes 1-5 business days', 'Low fees for local transfers', 'May have currency conversion fees'],
+      best: 'Best for stable, regular income'
+    },
+    {
+      icon: '💳',
+      title: 'PayPal',
+      platforms: 'Freelancing, E-Commerce, Content',
+      description: 'Most widely accepted payment method globally. Easy to set up.',
+      details: ['Instant transfers to PayPal balance', 'Withdraw to bank in 1-3 days', 'Works in 200+ countries', 'Fees: ~4.4% + fixed fee per transaction'],
+      best: 'Best for international clients'
+    },
+    {
+      icon: '🌍',
+      title: 'Wise (TransferWise)',
+      platforms: 'Freelancing, Remote Work',
+      description: 'Low-cost international money transfers with real exchange rates.',
+      details: ['Up to 5x cheaper than banks', 'Real mid-market exchange rate', 'Multi-currency account', 'Fast transfers (same day often)'],
+      best: 'Best for receiving foreign currency'
+    },
+    {
+      icon: '💼',
+      title: 'Payoneer',
+      platforms: 'Freelancing, Affiliate Marketing',
+      description: 'Popular for freelancers. Get a virtual US/EU bank account.',
+      details: ['Receive USD, EUR, GBP easily', 'Withdraw to local bank', 'Free to receive payments', 'Withdrawal fees vary by country'],
+      best: 'Best for Upwork, Fiverr, Amazon'
+    },
+    {
+      icon: '📱',
+      title: 'Stripe',
+      platforms: 'SaaS, E-Commerce, Digital Products',
+      description: 'Payment processor for online businesses. Direct to bank.',
+      details: ['Accept credit cards', 'Automatic payouts to bank', 'Payouts every 2-7 days', 'Fees: 2.9% + 30¢ per transaction'],
+      best: 'Best for selling products/services online'
+    },
+    {
+      icon: '🪙',
+      title: 'Crypto (USDC/USDT)',
+      platforms: 'Web3, Freelancing, Trading',
+      description: 'Receive payments in cryptocurrency. Convert to local currency.',
+      details: ['Fast global transfers', 'Low fees', 'Convert to local currency via exchanges', 'Use Binance, Coinbase, Luno'],
+      best: 'Best for tech-savvy, global clients'
+    },
+  ];
+
+  return (
+    <section id="payment" className="py-24 px-6 bg-white dark:bg-gray-900">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Getting Paid</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            How Money Enters Your Account
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            Understanding payment methods is crucial. Here's how you actually receive money from each platform.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {payments.map((payment, i) => (
+            <div key={i} className="p-6 rounded-2xl bg-gray-50 dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 hover:border-emerald-200 dark:hover:border-emerald-700/50 hover:shadow-lg transition-all duration-300">
+              <div className="text-4xl mb-4">{payment.icon}</div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">{payment.title}</h3>
+              <p className="text-xs text-emerald-600 dark:text-emerald-400 mb-3">{payment.platforms}</p>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{payment.description}</p>
+              <ul className="space-y-2 mb-4">
+                {payment.details.map((detail, j) => (
+                  <li key={j} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
+                    <svg className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    {detail}
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-3 border-t border-gray-200 dark:border-gray-700">
+                <span className="text-xs font-medium text-gray-500 dark:text-gray-400">{payment.best}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Flow diagram */}
+        <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-8 border border-emerald-100 dark:border-emerald-800/50">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            💰 Payment Flow: How Money Reaches You
+          </h3>
+          <div className="grid md:grid-cols-5 gap-4 items-center">
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-sm flex items-center justify-center text-2xl mb-2">
+                👤
+              </div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Client/Buyer</div>
+            </div>
+            <div className="text-center text-gray-400">
+              <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+              <div className="text-xs mt-1">Pays</div>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-sm flex items-center justify-center text-2xl mb-2">
+                🌐
+              </div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Platform</div>
+              <div className="text-xs text-gray-500 dark:text-gray-400">(Upwork, Shopify, etc.)</div>
+            </div>
+            <div className="text-center text-gray-400">
+              <svg className="w-8 h-8 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+              <div className="text-xs mt-1">Transfers</div>
+            </div>
+            <div className="text-center">
+              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl shadow-sm flex items-center justify-center text-2xl mb-2">
+                🏦
+              </div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Your Bank</div>
+              <div className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">💵 Money!</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Quick tips */}
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          <div className="p-5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
+            <div className="text-sm font-semibold text-blue-700 dark:text-blue-400 mb-2">💡 Pro Tip #1</div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Set up PayPal AND Wise early. Most platforms pay to these. Having both gives you flexibility.</p>
+          </div>
+          <div className="p-5 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/50">
+            <div className="text-sm font-semibold text-purple-700 dark:text-purple-400 mb-2">💡 Pro Tip #2</div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Use Wise for international payments to save 3-5% on currency conversion vs banks.</p>
+          </div>
+          <div className="p-5 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/50">
+            <div className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-2">💡 Pro Tip #3</div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Keep a separate bank account for online income. Makes tax time much easier.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Quiz() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -793,6 +945,7 @@ export default function App() {
       <Tools />
       <Guide />
       <Quiz />
+      <PaymentMethods />
       <FAQ />
       <Newsletter />
       <Footer />
