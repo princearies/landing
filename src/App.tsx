@@ -24,6 +24,7 @@ function Navbar() {
           <a href="#compare" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Compare</a>
           <a href="#tools" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Tools</a>
           <a href="#guide" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Guide</a>
+          <a href="#traffic" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Marketing</a>
           <a href="#payment" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Getting Paid</a>
           <a href="#faq" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">FAQ</a>
         </div>
@@ -37,6 +38,7 @@ function Navbar() {
           <a href="#compare" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Compare</a>
           <a href="#tools" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Tools</a>
           <a href="#guide" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Guide</a>
+          <a href="#traffic" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Marketing</a>
           <a href="#payment" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Getting Paid</a>
           <a href="#faq" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>FAQ</a>
         </div>
@@ -460,6 +462,274 @@ function FAQ() {
               )}
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function TrafficStrategies() {
+  const strategies = [
+    {
+      icon: '🔍',
+      title: 'SEO (Search Engine Optimization)',
+      traffic: 'High (Long-term)',
+      cost: 'Free - $100/mo',
+      timeline: '3-6 months',
+      description: 'Rank on Google untuk kata kunci yang orang cari. Traffic percuma dan konsisten.',
+      tactics: [
+        'Research keywords dengan Google Keyword Planner',
+        'Write content yang jawab soalan orang',
+        'Optimize page speed dan mobile-friendly',
+        'Build backlinks dari website lain',
+        'Update content secara berkala'
+      ],
+      tools: ['Google Search Console', 'Ahrefs', 'SEMrush', 'Ubersuggest'],
+      color: 'from-blue-500 to-cyan-600'
+    },
+    {
+      icon: '📱',
+      title: 'Social Media Marketing',
+      traffic: 'Medium-High',
+      cost: 'Free - $500/mo',
+      timeline: '1-3 months',
+      description: 'Build audience di platform sosial. Share value, engage dengan community.',
+      tactics: [
+        'Post consistently (3-5x seminggu)',
+        'Guna video pendek (Reels, TikTok)',
+        'Engage dengan comments dan DMs',
+        'Join groups dan forums relevan',
+        'Collaborate dengan creators lain'
+      ],
+      tools: ['Instagram', 'TikTok', 'LinkedIn', 'Twitter/X', 'Pinterest'],
+      color: 'from-purple-500 to-pink-600'
+    },
+    {
+      icon: '✍️',
+      title: 'Content Marketing',
+      traffic: 'High (Long-term)',
+      cost: 'Free - $200/mo',
+      timeline: '2-4 months',
+      description: 'Create blog posts, videos, podcasts yang educate dan entertain audience.',
+      tactics: [
+        'Publish 2-3 blog posts seminggu',
+        'Create evergreen content yang selalu relevant',
+        'Repurpose content ke multiple formats',
+        'Guest post di websites popular',
+        'Build email list dari content'
+      ],
+      tools: ['WordPress', 'Medium', 'Substack', 'Canva', 'Notion'],
+      color: 'from-emerald-500 to-teal-600'
+    },
+    {
+      icon: '💰',
+      title: 'Paid Advertising',
+      traffic: 'Immediate',
+      cost: '$200 - $5,000/mo',
+      timeline: 'Instant',
+      description: 'Bayar untuk ads di Google, Facebook, Instagram. Cepat tapi kena budget.',
+      tactics: [
+        'Start dengan small budget ($5-10/hari)',
+        'Target specific audience demographics',
+        'A/B test different ad creatives',
+        'Track ROI dan optimize campaigns',
+        'Scale winning ads, kill losers'
+      ],
+      tools: ['Google Ads', 'Facebook Ads', 'TikTok Ads', 'Instagram Ads'],
+      color: 'from-orange-500 to-red-600'
+    },
+    {
+      icon: '📧',
+      title: 'Email Marketing',
+      traffic: 'High (Retention)',
+      cost: 'Free - $50/mo',
+      timeline: '1-2 months',
+      description: 'Build email list dan send newsletters. Highest ROI marketing channel.',
+      tactics: [
+        'Offer lead magnet (free ebook, template)',
+        'Add email signup forms everywhere',
+        'Send weekly valuable newsletters',
+        'Segment list untuk better targeting',
+        'Automate welcome sequences'
+      ],
+      tools: ['ConvertKit', 'Beehiiv', 'Mailchimp', 'Substack'],
+      color: 'from-indigo-500 to-violet-600'
+    },
+    {
+      icon: '🤝',
+      title: 'Community Building',
+      traffic: 'Medium (Loyal)',
+      cost: 'Free - $100/mo',
+      timeline: '2-6 months',
+      description: 'Build community di Discord, Facebook Groups, Reddit. Loyal audience yang share.',
+      tactics: [
+        'Join existing communities dulu',
+        'Provide value tanpa promote sendiri',
+        'Start your own group/forum',
+        'Host AMAs dan events',
+        'Create exclusive content untuk members'
+      ],
+      tools: ['Discord', 'Facebook Groups', 'Reddit', 'Slack', 'Circle'],
+      color: 'from-rose-500 to-pink-600'
+    },
+    {
+      icon: '🎯',
+      title: 'Influencer Marketing',
+      traffic: 'Medium-High',
+      cost: '$100 - $10,000',
+      timeline: '1-2 weeks',
+      description: 'Partner dengan influencers untuk promote your product/content.',
+      tactics: [
+        'Find micro-influencers (1k-50k followers)',
+        'Offer free product/service for review',
+        'Create affiliate programs',
+        'Sponsor YouTube videos/podcasts',
+        'Track results dengan promo codes'
+      ],
+      tools: ['Instagram', 'YouTube', 'TikTok', 'Podcasts', 'Blogs'],
+      color: 'from-amber-500 to-orange-600'
+    },
+    {
+      icon: '🔄',
+      title: 'Referral Programs',
+      traffic: 'Medium (High Quality)',
+      cost: '10-30% commission',
+      timeline: '1-2 months',
+      description: 'Reward existing users untuk refer new users. Word-of-mouth marketing.',
+      tactics: [
+        'Offer discounts/credits for referrals',
+        'Make sharing easy (one-click)',
+        'Track referrals dengan unique links',
+        'Reward both referrer and referee',
+        'Promote referral program actively'
+      ],
+      tools: ['ReferralCandy', 'Rewardful', 'FirstPromoter', 'Custom links'],
+      color: 'from-cyan-500 to-blue-600'
+    }
+  ];
+
+  return (
+    <section id="traffic" className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800 dark:to-gray-900">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wider">Marketing</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            Cara Tarik Pengunjung ke Laman Web
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+            8 strategi proven untuk bawa traffic dan convert visitors menjadi customers.
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
+          {strategies.map((strategy, i) => (
+            <div key={i} className="p-6 rounded-2xl bg-white dark:bg-gray-800/50 border border-gray-100 dark:border-gray-700/50 hover:border-emerald-200 dark:hover:border-emerald-700/50 hover:shadow-xl transition-all duration-300">
+              <div className="flex items-start justify-between mb-4">
+                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${strategy.color} flex items-center justify-center text-2xl`}>
+                  {strategy.icon}
+                </div>
+                <div className="text-right">
+                  <div className="text-xs font-medium text-emerald-600 dark:text-emerald-400">{strategy.traffic}</div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">{strategy.cost}</div>
+                </div>
+              </div>
+              
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{strategy.title}</h3>
+              <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">{strategy.description}</p>
+              
+              <div className="mb-4">
+                <div className="text-xs font-medium text-gray-500 dark:text-gray-400 mb-2">Timeline: {strategy.timeline}</div>
+              </div>
+
+              <div className="mb-4">
+                <div className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Taktik:</div>
+                <ul className="space-y-1.5">
+                  {strategy.tactics.slice(0, 3).map((tactic, j) => (
+                    <li key={j} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
+                      <span className="text-emerald-500 mt-0.5">•</span>
+                      {tactic}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-3 border-t border-gray-100 dark:border-gray-700">
+                <div className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Tools:</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {strategy.tools.slice(0, 4).map((tool, j) => (
+                    <span key={j} className="text-xs px-2 py-0.5 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Quick start guide */}
+        <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 rounded-2xl p-8 border border-emerald-100 dark:border-emerald-800/50">
+          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            🚀 Quick Start: 30-Day Traffic Plan
+          </h3>
+          <div className="grid md:grid-cols-4 gap-4">
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Week 1</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Setup</div>
+              <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Setup Google Analytics</li>
+                <li>• Create social media profiles</li>
+                <li>• Write 3 blog posts</li>
+                <li>• Start email list</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Week 2</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Content</div>
+              <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Post daily on social media</li>
+                <li>• Write 2 more blog posts</li>
+                <li>• Join 5 relevant communities</li>
+                <li>• Engage with 50 posts/day</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Week 3</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Outreach</div>
+              <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Guest post on 2 blogs</li>
+                <li>• Reach out to 10 influencers</li>
+                <li>• Share in communities</li>
+                <li>• Start email newsletter</li>
+              </ul>
+            </div>
+            <div className="bg-white dark:bg-gray-800 rounded-xl p-4">
+              <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">Week 4</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-2">Scale</div>
+              <ul className="text-xs text-gray-600 dark:text-gray-400 space-y-1">
+                <li>• Analyze what's working</li>
+                <li>• Double down on top channels</li>
+                <li>• Test paid ads ($5/day)</li>
+                <li>• Plan next month</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Pro tips */}
+        <div className="mt-8 grid md:grid-cols-3 gap-4">
+          <div className="p-5 rounded-xl bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-800/50">
+            <div className="text-sm font-semibold text-blue-700 dark:text-blue-400 mb-2">🎯 Focus First</div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Pick 1-2 channels max. Master them before expanding. Consistency beats variety.</p>
+          </div>
+          <div className="p-5 rounded-xl bg-purple-50 dark:bg-purple-900/20 border border-purple-100 dark:border-purple-800/50">
+            <div className="text-sm font-semibold text-purple-700 dark:text-purple-400 mb-2">📊 Track Everything</div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Use Google Analytics. Know which channels bring traffic. Kill what doesn't work.</p>
+          </div>
+          <div className="p-5 rounded-xl bg-amber-50 dark:bg-amber-900/20 border border-amber-100 dark:border-amber-800/50">
+            <div className="text-sm font-semibold text-amber-700 dark:text-amber-400 mb-2">💎 Value First</div>
+            <p className="text-xs text-gray-700 dark:text-gray-300">Give value before asking for anything. Help people first, sell later.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -945,6 +1215,7 @@ export default function App() {
       <Tools />
       <Guide />
       <Quiz />
+      <TrafficStrategies />
       <PaymentMethods />
       <FAQ />
       <Newsletter />
