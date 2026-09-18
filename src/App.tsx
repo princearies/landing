@@ -24,6 +24,7 @@ function Navbar() {
           <a href="#compare" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Compare</a>
           <a href="#tools" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Tools</a>
           <a href="#guide" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Guide</a>
+          <a href="#free" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Free Marketing</a>
           <a href="#traffic" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Marketing</a>
           <a href="#payment" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">Getting Paid</a>
           <a href="#faq" className="text-sm text-gray-600 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">FAQ</a>
@@ -38,6 +39,7 @@ function Navbar() {
           <a href="#compare" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Compare</a>
           <a href="#tools" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Tools</a>
           <a href="#guide" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Guide</a>
+          <a href="#free" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Free Marketing</a>
           <a href="#traffic" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Marketing</a>
           <a href="#payment" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>Getting Paid</a>
           <a href="#faq" className="block text-sm text-gray-600 dark:text-gray-300" onClick={() => setMobileOpen(false)}>FAQ</a>
@@ -462,6 +464,280 @@ function FAQ() {
               )}
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FreeMarketing() {
+  const freeMethods = [
+    {
+      icon: '🔍',
+      title: 'SEO (Search Engine Optimization)',
+      description: 'Rank di Google secara percuma. Long-term tapi sangat berbaloi.',
+      steps: [
+        'Research keywords guna Google Keyword Planner (FREE)',
+        'Write blog posts yang jawab soalan orang',
+        'Optimize title tags, meta descriptions',
+        'Add internal links antara pages',
+        'Submit sitemap ke Google Search Console'
+      ],
+      time: '2-3 jam seminggu',
+      result: '500-5,000 visitors/bulan (after 3-6 months)'
+    },
+    {
+      icon: '📱',
+      title: 'Social Media Organic',
+      description: 'Post consistently di platform sosial. Build audience tanpa bayar ads.',
+      steps: [
+        'Pilih 2-3 platform (Instagram, TikTok, LinkedIn)',
+        'Post 3-5x seminggu',
+        'Guna hashtags yang relevant',
+        'Engage dengan 50 posts/hari di niche anda',
+        'Share valuable tips dan insights'
+      ],
+      time: '1 jam sehari',
+      result: '100-1,000 followers/bulan'
+    },
+    {
+      icon: '💬',
+      title: 'Forum & Community Participation',
+      description: 'Join communities dan bantu orang. Include link ke website anda bila relevant.',
+      steps: [
+        'Join Reddit, Quora, Facebook Groups',
+        'Answer questions dengan detailed responses',
+        'Share your website link bila appropriate',
+        'Jangan spam - provide genuine value',
+        'Build reputation sebagai expert'
+      ],
+      time: '30 minit sehari',
+      result: '50-500 visitors/bulan'
+    },
+    {
+      icon: '✍️',
+      title: 'Guest Posting',
+      description: 'Write articles untuk blogs lain. Dapat backlink dan exposure percuma.',
+      steps: [
+        'Find blogs dalam niche anda yang accept guest posts',
+        'Pitch unique article ideas',
+        'Write high-quality content',
+        'Include link ke website anda dalam bio/article',
+        'Share article di social media anda'
+      ],
+      time: '4-6 jam per article',
+      result: '200-2,000 visitors per post'
+    },
+    {
+      icon: '📧',
+      title: 'Email Marketing (Free Tier)',
+      description: 'Build email list dengan free tools. Send newsletters percuma.',
+      steps: [
+        'Sign up Mailchimp/Beehiiv (free up to 500-2,000 subscribers)',
+        'Add signup form di website anda',
+        'Offer lead magnet (free PDF, template)',
+        'Send weekly newsletter dengan valuable content',
+        'Include links ke new blog posts'
+      ],
+      time: '2 jam seminggu',
+      result: 'High engagement, repeat visitors'
+    },
+    {
+      icon: '🎥',
+      title: 'YouTube / Video Content',
+      description: 'Create videos yang educate atau entertain. YouTube = free traffic machine.',
+      steps: [
+        'Pick topics orang cari di YouTube',
+        'Record dengan phone sahaja (okay untuk start)',
+        'Optimize title, description, tags',
+        'Add link ke website dalam description',
+        'Post consistently (1-2 videos/minggu)'
+      ],
+      time: '3-5 jam per video',
+      result: '100-10,000 views/video'
+    },
+    {
+      icon: '🔄',
+      title: 'Content Repurposing',
+      description: 'Reuse content di multiple platforms. 1 piece of content = multiple traffic sources.',
+      steps: [
+        'Write 1 blog post',
+        'Turn into Twitter thread',
+        'Create Instagram carousel',
+        'Record as YouTube video',
+        'Share di LinkedIn, Facebook, Reddit'
+      ],
+      time: '1 jam extra per content',
+      result: '3-5x more reach from same content'
+    },
+    {
+      icon: '🤝',
+      title: 'Collaborations & Cross-Promotion',
+      description: 'Partner dengan creators lain. Share audience masing-masing percuma.',
+      steps: [
+        'Find creators dengan similar audience size',
+        'Propose collaboration ideas (interview, guest post)',
+        'Co-create content together',
+        'Share each other\'s content',
+        'Do joint giveaways atau events'
+      ],
+      time: '2-4 jam per collaboration',
+      result: 'Access to new audience instantly'
+    },
+    {
+      icon: '📊',
+      title: 'Pinterest (Underrated)',
+      description: 'Create pins untuk blog posts. Pinterest = long-term traffic source.',
+      steps: [
+        'Create Pinterest business account (free)',
+        'Design pins dengan Canva (free)',
+        'Pin your blog posts consistently',
+        'Join group boards untuk more reach',
+        'Use keywords in pin descriptions'
+      ],
+      time: '30 minit sehari',
+      result: '1,000-50,000 visitors/bulan (after 6 months)'
+    },
+    {
+      icon: '🎯',
+      title: 'Quora & Answer Sites',
+      description: 'Answer questions related to your niche. Include link bila relevant.',
+      steps: [
+        'Sign up Quora, Reddit',
+        'Follow topics related to your expertise',
+        'Answer questions with detailed responses',
+        'Link to your blog posts when appropriate',
+        'Build profile as expert'
+      ],
+      time: '30 minit sehari',
+      result: '100-1,000 visitors/bulan'
+    }
+  ];
+
+  return (
+    <section id="free" className="py-24 px-6 bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-gray-900 dark:via-gray-900 dark:to-emerald-950">
+      <div className="max-w-6xl mx-auto">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-100 dark:bg-emerald-900/30 rounded-full mb-4">
+            <span className="text-2xl">💸</span>
+            <span className="text-sm font-bold text-emerald-700 dark:text-emerald-300">100% PERCUMA</span>
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mt-3 mb-4">
+            Tarik Pengunjung <span className="text-emerald-600 dark:text-emerald-400">Tanpa Bayar</span>
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            10 strategi proven untuk drive traffic ke website anda dengan kos $0. Sesuai untuk beginner!
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-6 mb-12">
+          {freeMethods.map((method, i) => (
+            <div key={i} className="p-6 rounded-2xl bg-white dark:bg-gray-800/50 border-2 border-emerald-100 dark:border-emerald-800/50 hover:border-emerald-300 dark:hover:border-emerald-600 hover:shadow-xl transition-all duration-300">
+              <div className="flex items-start gap-4 mb-4">
+                <div className="text-4xl flex-shrink-0">{method.icon}</div>
+                <div className="flex-1">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-white mb-1">{method.title}</h3>
+                  <p className="text-sm text-gray-600 dark:text-gray-400">{method.description}</p>
+                </div>
+              </div>
+
+              <div className="mb-4">
+                <div className="text-xs font-semibold text-gray-700 dark:text-gray-300 mb-2">Langkah-langkah:</div>
+                <ul className="space-y-1.5">
+                  {method.steps.map((step, j) => (
+                    <li key={j} className="flex items-start gap-2 text-xs text-gray-600 dark:text-gray-400">
+                      <span className="text-emerald-500 font-bold mt-0.5">{j + 1}.</span>
+                      {step}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="pt-4 border-t border-gray-100 dark:border-gray-700 grid grid-cols-2 gap-4">
+                <div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Masa diperlukan:</div>
+                  <div className="text-sm font-semibold text-gray-900 dark:text-white">{method.time}</div>
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 dark:text-gray-400">Expected result:</div>
+                  <div className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">{method.result}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Quick action plan */}
+        <div className="bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl p-8 text-white">
+          <h3 className="text-2xl font-bold mb-6 text-center">
+            🚀 Action Plan: Mula Hari Ini (Kos: $0)
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5">
+              <div className="text-3xl font-bold mb-2">Hari 1</div>
+              <div className="text-sm font-semibold mb-3">Setup Asas</div>
+              <ul className="text-xs space-y-1.5 opacity-90">
+                <li>✓ Create Google Search Console</li>
+                <li>✓ Setup social media profiles</li>
+                <li>✓ Write first blog post</li>
+                <li>✓ Join 5 relevant communities</li>
+              </ul>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5">
+              <div className="text-3xl font-bold mb-2">Minggu 1</div>
+              <div className="text-sm font-semibold mb-3">Build Momentum</div>
+              <ul className="text-xs space-y-1.5 opacity-90">
+                <li>✓ Post daily di social media</li>
+                <li>✓ Write 3 blog posts</li>
+                <li>✓ Answer 10 questions/hari di Quora</li>
+                <li>✓ Engage dengan 50 posts/hari</li>
+              </ul>
+            </div>
+            <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5">
+              <div className="text-3xl font-bold mb-2">Bulan 1</div>
+              <div className="text-sm font-semibold mb-3">Scale Up</div>
+              <ul className="text-xs space-y-1.5 opacity-90">
+                <li>✓ Pitch 5 guest posts</li>
+                <li>✓ Start email newsletter</li>
+                <li>✓ Create 4 YouTube videos</li>
+                <li>✓ Reach out untuk 3 collaborations</li>
+              </ul>
+            </div>
+          </div>
+          <div className="mt-6 text-center">
+            <div className="inline-block bg-white/20 backdrop-blur-sm rounded-lg px-6 py-3">
+              <span className="text-sm font-semibold">💡 Tip: Konsisten {'>'} Perfect. Buat sikit setiap hari, bukan perfect sekali sebulan.</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Free tools */}
+        <div className="mt-12">
+          <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+            🛠️ Free Tools Yang Anda Perlukan
+          </h3>
+          <div className="grid md:grid-cols-4 gap-4">
+            <div className="bg-white dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div className="text-2xl mb-2">🔍</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">SEO</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Google Search Console, Ubersuggest (free tier)</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div className="text-2xl mb-2">🎨</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Design</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Canva, Figma (free tier)</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div className="text-2xl mb-2">📧</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Email</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Mailchimp, Beehiiv (free up to 500-2k subs)</div>
+            </div>
+            <div className="bg-white dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700">
+              <div className="text-2xl mb-2">📊</div>
+              <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">Analytics</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Google Analytics, Plausible (free trial)</div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1215,6 +1491,7 @@ export default function App() {
       <Tools />
       <Guide />
       <Quiz />
+      <FreeMarketing />
       <TrafficStrategies />
       <PaymentMethods />
       <FAQ />
